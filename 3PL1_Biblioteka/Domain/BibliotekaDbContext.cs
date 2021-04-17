@@ -12,7 +12,7 @@ namespace Domain
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseMySQL("server=localhost;database=library;user=user;password=password");
+			optionsBuilder.UseMySQL("server=localhost;database=3PL1_Biblioteka;UId=root;password=root");
 		}
 
 		public DbSet<Kategorija> Kategorijos { get; set; }
