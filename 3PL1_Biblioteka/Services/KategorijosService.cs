@@ -33,7 +33,7 @@ namespace Services
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing) {
-				//Sunaikinsime DbContextą
+				_dbContext.Dispose();
 			}
 		}
 	}
