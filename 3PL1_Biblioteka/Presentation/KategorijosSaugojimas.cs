@@ -17,20 +17,45 @@ namespace Presentation
 
 		private KategorijosIšsaugojimas _kategorijosIšsaugojimas;
 
+		/// <summary>
+		/// Naujos kategorijos konstruktorius
+		/// </summary>
+		/// <param name="kategorijosIšsaugojimas">Nuoroda į kategorijos saugojimo metodą</param>
 		public KategorijosSaugojimas(KategorijosIšsaugojimas kategorijosIšsaugojimas)
 		{
 			InitializeComponent();
 			_kategorijosIšsaugojimas = kategorijosIšsaugojimas;
 		}
 
+		/// <summary>
+		/// Redaguojamos kategorijos konstruktorius
+		/// </summary>
+		/// <param name="kategorijosIšsaugojimas">Nuoroda į kategorijos saugojimo metodą</param>
+		/// <param name="kategorija">Redaguojama kategorija</param>
+		public KategorijosSaugojimas(KategorijosIšsaugojimas kategorijosIšsaugojimas, Kategorija kategorija)
+		{
+			InitializeComponent();
+			_kategorijosIšsaugojimas = kategorijosIšsaugojimas;
+			UžpildykFormą(kategorija);
+		}
+
+		private void UžpildykFormą(Kategorija kategorija)
+		{
+			txtId.Text = kategorija.Id.ToString();
+			txtPavadinimas.Text = kategorija.Pavadinimas;
+			txtAmžiausCenzūra.Text = kategorija.AmžiausCenzūra.HasValue ? kategorija.AmžiausCenzūra.ToString() : string.Empty;
+		}
+
 		private void btnSaugoti_Click(object sender, EventArgs e)
 		{
 			if (string.IsNullOrEmpty(txtPavadinimas.Text)) {
 				MessageBox.Show("Įveskite kategorijos pavadinimą.");
+				return;
 			}
 
 			if (txtPavadinimas.Text.Length > 50) {
 				MessageBox.Show("Kategorijos pavadinimas neturi būti ilgesnis nei 50 simbolių.");
+				return;
 			}
 
 			var id = string.IsNullOrEmpty(txtId.Text) ? (int?)null : int.Parse(txtId.Text);

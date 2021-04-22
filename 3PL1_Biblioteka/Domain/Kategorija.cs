@@ -8,10 +8,22 @@ namespace Domain
 {
 	public class Kategorija
 	{
-		public int Id { get; set; }
+		public int Id { get; private set; }
 
-		public string Pavadinimas { get; set; }
+		public string Pavadinimas { get; private set; }
 
-		public int? AmžiausCenzūra { get; set; }
+		public int? AmžiausCenzūra { get; private set; }
+
+		public Kategorija(string pavadinimas, int? amžiausCenzūra)
+		{
+			Pavadinimas = pavadinimas;
+			AmžiausCenzūra = amžiausCenzūra;
+		}
+
+		public void Atsinaujink(string pavadinimas, int? amžiausCenzūra)
+		{
+			Pavadinimas = pavadinimas;
+			AmžiausCenzūra = amžiausCenzūra;
+		}
 	}
 }

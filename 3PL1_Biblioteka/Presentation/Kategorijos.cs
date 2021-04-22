@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Services.FormDtos;
 
 namespace Presentation
 {
@@ -50,6 +51,20 @@ namespace Presentation
 		private void KategorijosIšsagojimas(Services.FormDtos.Kategorija kategorija)
 		{
 			_kategorijosService.SaugokKategoriją(kategorija);
+		}
+
+		private void dataGridViewKategorijos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.ColumnIndex == 3) {
+
+				var id = (int)dataGridViewKategorijos["clmnId", e.RowIndex].Value;
+				var pavadinimas = dataGridViewKategorijos["clmnPavadinimas", e.RowIndex].Value.ToString();
+				var amžiausCenzūra = string.IsNullOrEmpty(dataGridViewKategorijos["clmnAmžiausCenzūra", e.RowIndex].Value.ToString()) ? (int?)null : (int?)dataGridViewKategorijos["clmnAmžiausCenzūra", e.RowIndex].Value;
+
+				Kategorija redaguojamaKategorija = new(id, pavadinimas, amžiausCenzūra);
+				KategorijosSaugojimas kategorijosSaugojimas = new(KategorijosIšsagojimas, redaguojamaKategorija);
+				kategorijosSaugojimas.ShowDialog();
+			}
 		}
 	}
 }

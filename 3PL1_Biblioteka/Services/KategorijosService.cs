@@ -24,6 +24,28 @@ namespace Services
 			return _dbContext.Kategorijos.ToList();
 		}
 
+		public void SaugokKategoriją(FormDtos.Kategorija kategorija)
+		{
+			if (kategorija.Id.HasValue) {
+
+				var dbKategorija = (from kategorijaModel in _dbContext.Kategorijos
+									where kategorijaModel.Id == kategorija.Id
+									select kategorijaModel).FirstOrDefault();
+
+				dbKategorija.Atsinaujink(kategorija.Pavadinimas, kategorija.AmžiausCenzūra);
+
+				//$"UPDATE kategorijos SET Pavadinimas = {kategorija.Pavadinimas}, AmziausCenzura = {kategorija.AmžiausCenzūra} WHERE Id = {kategorija.Id}";
+			} else {
+				Kategorija dbKategorija = new(kategorija.Pavadinimas, kategorija.AmžiausCenzūra);
+
+				_dbContext.Kategorijos.Add(dbKategorija);
+				//$"INSERT INTO kategorijos (Pavadinimas, AmziausCenzura) VALUES ('{kategorija.Pavadinimas}', {kategorija.AmžiausCenzūra})";
+			}
+
+			_dbContext.SaveChanges();
+			
+		}
+
 		public void Dispose()
 		{
 			Dispose(true);
