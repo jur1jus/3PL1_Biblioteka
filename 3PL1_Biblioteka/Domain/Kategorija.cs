@@ -14,16 +14,24 @@ namespace Domain
 
 		public int? AmžiausCenzūra { get; private set; }
 
+		public bool ArIštrintas { get; private set; }
+
 		public Kategorija(string pavadinimas, int? amžiausCenzūra)
 		{
 			Pavadinimas = pavadinimas;
 			AmžiausCenzūra = amžiausCenzūra;
+			ArIštrintas = false;
 		}
 
 		public void Atsinaujink(string pavadinimas, int? amžiausCenzūra)
 		{
 			Pavadinimas = pavadinimas;
 			AmžiausCenzūra = amžiausCenzūra;
+		}
+
+		public void Pasinaikink()
+		{
+			ArIštrintas = true;
 		}
 	}
 }

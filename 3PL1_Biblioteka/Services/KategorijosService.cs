@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Services
 			//var kategorijos = (from kategorija in _dbContext.Kategorijos
 			//				   select kategorija).ToList();
 
-			return _dbContext.Kategorijos.ToList();
+			return _dbContext.Kategorijos.Where(m => !m.ArIštrintas).ToList();
 		}
 
 		public void SaugokKategoriją(FormDtos.Kategorija kategorija)
@@ -43,7 +44,17 @@ namespace Services
 			}
 
 			_dbContext.SaveChanges();
-			
+		}
+
+		public void NaikinkKategoriją(int id)
+		{
+			var kategorija = _dbContext.Kategorijos
+								.Where(k => k.Id == id)
+								.First();
+
+			kategorija.Pasinaikink();
+
+			_dbContext.SaveChanges();
 		}
 
 		public void Dispose()
@@ -58,5 +69,7 @@ namespace Services
 				_dbContext.Dispose();
 			}
 		}
+
+		
 	}
 }

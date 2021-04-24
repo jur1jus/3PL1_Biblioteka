@@ -65,6 +65,7 @@ namespace Presentation
 			Kategorija kategorija = new(id, pavadinimas, amžiausCenzūra);
 
 			_kategorijosIšsaugojimas(kategorija);
+			this.Close();
 		}
 	}
 }
