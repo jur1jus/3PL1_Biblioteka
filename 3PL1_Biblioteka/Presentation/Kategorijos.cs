@@ -20,7 +20,7 @@ namespace Presentation
 		{
 			_kategorijosService = new KategorijosService();
 			InitializeComponent();
-			GaukSąrašoDuomenis();
+			GaukSąrašoDuomenis(GaukPaieškosLaukus());
 		}
 
 		~Kategorijos()
@@ -28,9 +28,9 @@ namespace Presentation
 			_kategorijosService.Dispose();
 		}
 
-		private void GaukSąrašoDuomenis()
+		private void GaukSąrašoDuomenis(KategorijosPaieška kategorijosPaieška)
 		{
-			var kategorijos = _kategorijosService.GaukKategorijas();
+			var kategorijos = _kategorijosService.GaukKategorijas(kategorijosPaieška);
 
 			dataGridViewKategorijos.Rows.Clear();
 
@@ -51,7 +51,7 @@ namespace Presentation
 		private void KategorijosIšsagojimas(Services.FormDtos.Kategorija kategorija)
 		{
 			_kategorijosService.SaugokKategoriją(kategorija);
-			GaukSąrašoDuomenis();
+			GaukSąrašoDuomenis(GaukPaieškosLaukus());
 		}
 
 		private void dataGridViewKategorijos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -78,7 +78,30 @@ namespace Presentation
 
 			if (result == DialogResult.Yes) {
 				_kategorijosService.NaikinkKategoriją(id);
-				GaukSąrašoDuomenis();
+				GaukSąrašoDuomenis(GaukPaieškosLaukus());
+			}
+		}
+
+		private void textBox2_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter) {
+				GaukSąrašoDuomenis(GaukPaieškosLaukus());
+			}
+		}
+
+		private KategorijosPaieška GaukPaieškosLaukus()
+		{
+			var pavadinimasPaieška = string.IsNullOrWhiteSpace(txtPaieškaPavadinimas.Text) ? null : txtPaieškaPavadinimas.Text;
+			var amžiausCenzūraPaieška = int.TryParse(txtPaieškaAmžiausCenzūra.Text, out int amžiausCenzūra) ? (int?)amžiausCenzūra : (int?)null;
+
+			KategorijosPaieška paiešką = new(pavadinimasPaieška, amžiausCenzūraPaieška);
+			return paiešką;
+		}
+
+		private void txtPaieškaPavadinimas_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter) {
+				GaukSąrašoDuomenis(GaukPaieškosLaukus());
 			}
 		}
 	}

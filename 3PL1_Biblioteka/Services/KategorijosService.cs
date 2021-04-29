@@ -17,12 +17,16 @@ namespace Services
 			_dbContext = new BibliotekaDbContext();
 		}
 
-		public List<Kategorija> GaukKategorijas()
+		public List<Kategorija> GaukKategorijas(FormDtos.KategorijosPaieška kategorijosPaieška)
 		{
 			//var kategorijos = (from kategorija in _dbContext.Kategorijos
 			//				   select kategorija).ToList();
 
-			return _dbContext.Kategorijos.Where(m => !m.ArIštrintas).ToList();
+			return _dbContext.Kategorijos
+						.Where(m => !m.ArIštrintas
+								&& (kategorijosPaieška.Pavadinimas == null || m.Pavadinimas.Contains(kategorijosPaieška.Pavadinimas))
+								&& (kategorijosPaieška.AmžiausCenzūra == null || m.AmžiausCenzūra == kategorijosPaieška.AmžiausCenzūra))
+						.ToList();
 		}
 
 		public void SaugokKategoriją(FormDtos.Kategorija kategorija)
@@ -69,7 +73,5 @@ namespace Services
 				_dbContext.Dispose();
 			}
 		}
-
-		
 	}
 }
