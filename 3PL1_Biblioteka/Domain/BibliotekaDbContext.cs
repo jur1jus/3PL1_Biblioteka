@@ -17,6 +17,8 @@ namespace Domain
 
 		public DbSet<Kategorija> Kategorijos { get; set; }
 
+		public DbSet<Klientas> Klientai { get; set; }
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Kategorija>(entity => {
