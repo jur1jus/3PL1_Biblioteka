@@ -31,7 +31,8 @@ namespace Presentation
 		private void pictureBox1_Click(object sender, EventArgs e)
 		{
 			var paveiksliukas = _service.SuformuokPaveiksliuką();
-			pictureBox1.Image = paveiksliukas;
+			pictureBox1.Image = paveiksliukas.Item1;
+			klientoPaveiksliukas = paveiksliukas.Item2;
 		}
 
 		private void KlientoRegistracija_Load(object sender, EventArgs e)
@@ -44,7 +45,7 @@ namespace Presentation
 			var vardas = txtVardas.Text;
 			var pavardė = txtPavardė.Text;
 			var elpaštas = txtElPaštas.Text;
-			var paveiksliukas = pictureBox1.Image;
+			var paveiksliukas = klientoPaveiksliukas;
 			var kortelėsId = Guid.Parse(txtKortelėsId.Text);
 
 			Klientas klientas = new(null, vardas, pavardė, elpaštas, paveiksliukas, kortelėsId);

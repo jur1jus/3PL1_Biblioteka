@@ -28,23 +28,18 @@ namespace Services
 
 			using (HttpClient httpClient = new HttpClient()) {
 				var paveiksliukoBytes = httpClient.GetByteArrayAsync(nuoroda).Result;
-
-				Stream stream = new MemoryStream(paveiksliukoBytes);
-
-				FileStream fs = new FileStream("", FileMode.Create, FileAccess.ReadWrite);
-				stream.CopyTo(fs);
 				return paveiksliukoBytes;
 			}
 		}
 
-		public Bitmap SuformuokPaveiksliuką()
+		public Tuple<Bitmap, byte[]> SuformuokPaveiksliuką()
 		{
 			var paveiksliukoBytes = GaukPaveiksliuką();
-			byte[] pData = paveiksliukoBytes;
 
 			using (MemoryStream mStream = new()) {
-				mStream.Write(pData, 0, pData.Length);
-				return new(mStream, false);
+				mStream.Write(paveiksliukoBytes, 0, paveiksliukoBytes.Length);
+				var paveiksliukas = new Bitmap(mStream, false);
+				return new Tuple<Bitmap, byte[]>(paveiksliukas, paveiksliukoBytes);
 			}
 		}
 
@@ -66,9 +61,8 @@ namespace Services
 					}
 
 					var nuotraukųFolderis = ConfigurationManager.AppSettings["klientųNuotraukųFolderis"];
-					var nuotraukosBytes = ImageToBytes(klientas.paveiksliukas);
 
-					//ĮkelkFailąĮFtp(nuotraukųFolderis, paveiksliukoFileName, nuotraukosBytes);
+					ĮkelkFailąĮFtp(nuotraukųFolderis, paveiksliukoFileName, klientas.Paveiksliukas);
 
 					_db.SaveChanges();
 					tran.Commit();
@@ -79,16 +73,9 @@ namespace Services
 			}
 		}
 
-		private byte[] ImageToBytes(Image paveiksliukas)
-		{
-			MemoryStream ms = new();
-			paveiksliukas.
-			return ms.ToArray();
-		}
-
 		private string GeneruokPaveiksliukoFilePavadinimą(FormDtos.Klientas klientas)
 		{
-			return $"{klientas.Vardas}_{klientas.Pavardė}_{DateTime.Now.ToString("yyyy-MM-dd_HH_mm_dd")}";
+			return $"{klientas.Vardas}_{klientas.Pavardė}_{DateTime.Now.ToString("yyyy-MM-dd_HH_mm_dd")}.jpg";
 			//Testas_Testauskas_2021-05-08_10_05_33
 		}
 
@@ -99,8 +86,8 @@ namespace Services
 
 			//request.Credentials = new NetworkCredential("username", "password");
 
-			Stream ftpStream = request.GetRequestStream();
-			ftpStream.Write(failas, 0, failas.Length);
+			using (Stream ftpStream = request.GetRequestStream())
+				ftpStream.Write(failas, 0, failas.Length);
 		}
 
 		public void Dispose()
