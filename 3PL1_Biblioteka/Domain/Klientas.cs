@@ -23,9 +23,20 @@ namespace Domain
 		[StringLength(100)]
 		public string ElPaštas { get; private set; }
 
-		[StringLength(36)]
-		public Guid KortelėsId { get; private set; }
+		//[StringLength(36)]
+		public string KortelėsId { get; private set; }
+
+		public string NuotraukosFailoPavadinimas { get; private set; }
 
 		private Klientas() { }
+
+		public Klientas(string vardas, string pavardė, string elPaštas, string kortelėsId, string nuotraukosFailoPavadinimas)
+		{
+			Vardas = vardas;
+			Pavardė = pavardė;
+			ElPaštas = elPaštas;
+			KortelėsId = kortelėsId;
+			NuotraukosFailoPavadinimas = nuotraukosFailoPavadinimas;
+		}
 	}
 }

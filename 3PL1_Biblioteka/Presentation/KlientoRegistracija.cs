@@ -15,6 +15,7 @@ namespace Presentation
 	public partial class KlientoRegistracija : Form
 	{
 		private readonly KlietaiService _service;
+		private byte[] klientoPaveiksliukas;
 
 		public KlientoRegistracija()
 		{
