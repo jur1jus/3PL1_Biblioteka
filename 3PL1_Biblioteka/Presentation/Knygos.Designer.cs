@@ -34,6 +34,7 @@ namespace Presentation
 			this.clmnAutorius = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.clmnMetai = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.clmnKategorija = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -87,11 +88,21 @@ namespace Presentation
 			this.clmnKategorija.Name = "clmnKategorija";
 			this.clmnKategorija.ReadOnly = true;
 			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(328, 13);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(104, 23);
+			this.button1.TabIndex = 1;
+			this.button1.Text = "Nauja knyga";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
 			// Knygos
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(444, 308);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.dataGridView1);
 			this.Name = "Knygos";
 			this.Text = "Knygos";
@@ -108,5 +119,6 @@ namespace Presentation
 		private System.Windows.Forms.DataGridViewTextBoxColumn clmnAutorius;
 		private System.Windows.Forms.DataGridViewTextBoxColumn clmnMetai;
 		private System.Windows.Forms.DataGridViewTextBoxColumn clmnKategorija;
+		private System.Windows.Forms.Button button1;
 	}
 }
