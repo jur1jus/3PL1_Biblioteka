@@ -35,6 +35,7 @@ namespace Presentation
 			this.btnKategorija = new System.Windows.Forms.Button();
 			this.txtKategorijosId = new System.Windows.Forms.TextBox();
 			this.btnSaugoti = new System.Windows.Forms.Button();
+			this.lblIštrintiKategorija = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// txtPavadinimas
@@ -64,6 +65,7 @@ namespace Presentation
 			// 
 			// txtKategorija
 			// 
+			this.txtKategorija.Enabled = false;
 			this.txtKategorija.Location = new System.Drawing.Point(104, 47);
 			this.txtKategorija.Name = "txtKategorija";
 			this.txtKategorija.Size = new System.Drawing.Size(163, 23);
@@ -77,6 +79,7 @@ namespace Presentation
 			this.btnKategorija.TabIndex = 4;
 			this.btnKategorija.Text = "?";
 			this.btnKategorija.UseVisualStyleBackColor = true;
+			this.btnKategorija.Click += new System.EventHandler(this.btnKategorija_Click);
 			// 
 			// txtKategorijosId
 			// 
@@ -84,6 +87,7 @@ namespace Presentation
 			this.txtKategorijosId.Name = "txtKategorijosId";
 			this.txtKategorijosId.Size = new System.Drawing.Size(10, 23);
 			this.txtKategorijosId.TabIndex = 5;
+			this.txtKategorijosId.Visible = false;
 			// 
 			// btnSaugoti
 			// 
@@ -94,11 +98,23 @@ namespace Presentation
 			this.btnSaugoti.Text = "Saugoti";
 			this.btnSaugoti.UseVisualStyleBackColor = true;
 			// 
+			// lblIštrintiKategorija
+			// 
+			this.lblIštrintiKategorija.AutoSize = true;
+			this.lblIštrintiKategorija.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.lblIštrintiKategorija.Location = new System.Drawing.Point(252, 48);
+			this.lblIštrintiKategorija.Name = "lblIštrintiKategorija";
+			this.lblIštrintiKategorija.Size = new System.Drawing.Size(14, 17);
+			this.lblIštrintiKategorija.TabIndex = 7;
+			this.lblIštrintiKategorija.Text = "x";
+			this.lblIštrintiKategorija.Click += new System.EventHandler(this.lblIštrintiKategorija_Click);
+			// 
 			// Knyga
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(556, 333);
+			this.Controls.Add(this.lblIštrintiKategorija);
 			this.Controls.Add(this.btnSaugoti);
 			this.Controls.Add(this.txtKategorijosId);
 			this.Controls.Add(this.btnKategorija);
@@ -122,5 +138,6 @@ namespace Presentation
 		private System.Windows.Forms.Button btnKategorija;
 		private System.Windows.Forms.TextBox txtKategorijosId;
 		private System.Windows.Forms.Button btnSaugoti;
+		private System.Windows.Forms.Label lblIštrintiKategorija;
 	}
 }

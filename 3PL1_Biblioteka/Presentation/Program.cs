@@ -17,7 +17,7 @@ namespace Presentation
 			Application.SetHighDpiMode(HighDpiMode.SystemAware);
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Knygos());
+			Application.Run(new Knyga());
 		}
 	}
 }

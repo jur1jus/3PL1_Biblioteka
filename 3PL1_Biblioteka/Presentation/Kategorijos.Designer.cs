@@ -29,14 +29,15 @@ namespace Presentation
 		private void InitializeComponent()
 		{
 			this.dataGridViewKategorijos = new System.Windows.Forms.DataGridView();
+			this.btnSukurtiKategorija = new System.Windows.Forms.Button();
+			this.txtPaieškaPavadinimas = new System.Windows.Forms.TextBox();
+			this.txtPaieškaAmžiausCenzūra = new System.Windows.Forms.TextBox();
 			this.clmnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.clmnPavadinimas = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.clmnAmžiausCenzūra = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.clmnRedaguoti = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.clmnIštrinti = new System.Windows.Forms.DataGridViewButtonColumn();
-			this.btnSukurtiKategorija = new System.Windows.Forms.Button();
-			this.txtPaieškaPavadinimas = new System.Windows.Forms.TextBox();
-			this.txtPaieškaAmžiausCenzūra = new System.Windows.Forms.TextBox();
+			this.clmnPasirinkti = new System.Windows.Forms.DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewKategorijos)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -50,7 +51,8 @@ namespace Presentation
             this.clmnPavadinimas,
             this.clmnAmžiausCenzūra,
             this.clmnRedaguoti,
-            this.clmnIštrinti});
+            this.clmnIštrinti,
+            this.clmnPasirinkti});
 			this.dataGridViewKategorijos.Location = new System.Drawing.Point(-1, 90);
 			this.dataGridViewKategorijos.Name = "dataGridViewKategorijos";
 			this.dataGridViewKategorijos.ReadOnly = true;
@@ -58,6 +60,32 @@ namespace Presentation
 			this.dataGridViewKategorijos.Size = new System.Drawing.Size(544, 296);
 			this.dataGridViewKategorijos.TabIndex = 0;
 			this.dataGridViewKategorijos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewKategorijos_CellContentClick);
+			// 
+			// btnSukurtiKategorija
+			// 
+			this.btnSukurtiKategorija.Location = new System.Drawing.Point(411, 12);
+			this.btnSukurtiKategorija.Name = "btnSukurtiKategorija";
+			this.btnSukurtiKategorija.Size = new System.Drawing.Size(120, 23);
+			this.btnSukurtiKategorija.TabIndex = 1;
+			this.btnSukurtiKategorija.Text = "Sukurti kategorija";
+			this.btnSukurtiKategorija.UseVisualStyleBackColor = true;
+			this.btnSukurtiKategorija.Click += new System.EventHandler(this.btnSukurtiKategorija_Click);
+			// 
+			// txtPaieškaPavadinimas
+			// 
+			this.txtPaieškaPavadinimas.Location = new System.Drawing.Point(48, 61);
+			this.txtPaieškaPavadinimas.Name = "txtPaieškaPavadinimas";
+			this.txtPaieškaPavadinimas.Size = new System.Drawing.Size(138, 23);
+			this.txtPaieškaPavadinimas.TabIndex = 2;
+			this.txtPaieškaPavadinimas.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPaieškaPavadinimas_KeyUp);
+			// 
+			// txtPaieškaAmžiausCenzūra
+			// 
+			this.txtPaieškaAmžiausCenzūra.Location = new System.Drawing.Point(196, 61);
+			this.txtPaieškaAmžiausCenzūra.Name = "txtPaieškaAmžiausCenzūra";
+			this.txtPaieškaAmžiausCenzūra.Size = new System.Drawing.Size(140, 23);
+			this.txtPaieškaAmžiausCenzūra.TabIndex = 3;
+			this.txtPaieškaAmžiausCenzūra.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyUp);
 			// 
 			// clmnId
 			// 
@@ -96,31 +124,13 @@ namespace Presentation
 			this.clmnIštrinti.Text = "Ištrinti";
 			this.clmnIštrinti.UseColumnTextForButtonValue = true;
 			// 
-			// btnSukurtiKategorija
+			// clmnPasirinkti
 			// 
-			this.btnSukurtiKategorija.Location = new System.Drawing.Point(411, 12);
-			this.btnSukurtiKategorija.Name = "btnSukurtiKategorija";
-			this.btnSukurtiKategorija.Size = new System.Drawing.Size(120, 23);
-			this.btnSukurtiKategorija.TabIndex = 1;
-			this.btnSukurtiKategorija.Text = "Sukurti kategorija";
-			this.btnSukurtiKategorija.UseVisualStyleBackColor = true;
-			this.btnSukurtiKategorija.Click += new System.EventHandler(this.btnSukurtiKategorija_Click);
-			// 
-			// txtPaieškaPavadinimas
-			// 
-			this.txtPaieškaPavadinimas.Location = new System.Drawing.Point(48, 61);
-			this.txtPaieškaPavadinimas.Name = "txtPaieškaPavadinimas";
-			this.txtPaieškaPavadinimas.Size = new System.Drawing.Size(138, 23);
-			this.txtPaieškaPavadinimas.TabIndex = 2;
-			this.txtPaieškaPavadinimas.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPaieškaPavadinimas_KeyUp);
-			// 
-			// txtPaieškaAmžiausCenzūra
-			// 
-			this.txtPaieškaAmžiausCenzūra.Location = new System.Drawing.Point(196, 61);
-			this.txtPaieškaAmžiausCenzūra.Name = "txtPaieškaAmžiausCenzūra";
-			this.txtPaieškaAmžiausCenzūra.Size = new System.Drawing.Size(140, 23);
-			this.txtPaieškaAmžiausCenzūra.TabIndex = 3;
-			this.txtPaieškaAmžiausCenzūra.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyUp);
+			this.clmnPasirinkti.HeaderText = "";
+			this.clmnPasirinkti.Name = "clmnPasirinkti";
+			this.clmnPasirinkti.ReadOnly = true;
+			this.clmnPasirinkti.Text = "Pasirinkti";
+			this.clmnPasirinkti.UseColumnTextForButtonValue = true;
 			// 
 			// Kategorijos
 			// 
@@ -143,12 +153,13 @@ namespace Presentation
 
 		private System.Windows.Forms.DataGridView dataGridViewKategorijos;
 		private System.Windows.Forms.Button btnSukurtiKategorija;
+		private System.Windows.Forms.TextBox txtPaieškaPavadinimas;
+		private System.Windows.Forms.TextBox txtPaieškaAmžiausCenzūra;
 		private System.Windows.Forms.DataGridViewTextBoxColumn clmnId;
 		private System.Windows.Forms.DataGridViewTextBoxColumn clmnPavadinimas;
 		private System.Windows.Forms.DataGridViewTextBoxColumn clmnAmžiausCenzūra;
+		private System.Windows.Forms.DataGridViewButtonColumn clmnPasirinkti;
 		private System.Windows.Forms.DataGridViewButtonColumn clmnRedaguoti;
 		private System.Windows.Forms.DataGridViewButtonColumn clmnIštrinti;
-		private System.Windows.Forms.TextBox txtPaieškaPavadinimas;
-		private System.Windows.Forms.TextBox txtPaieškaAmžiausCenzūra;
 	}
 }

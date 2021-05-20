@@ -16,5 +16,23 @@ namespace Presentation
 		{
 			InitializeComponent();
 		}
+
+		private void btnKategorija_Click(object sender, EventArgs e)
+		{
+			Kategorijos kategorijos = new(UžpildykKategorijosPikerį);
+			kategorijos.ShowDialog();
+		}
+
+		public void UžpildykKategorijosPikerį(int kategorijosId, string kategorijosPavadinimas)
+		{
+			txtKategorija.Text = kategorijosPavadinimas;
+			txtKategorijosId.Text = kategorijosId.ToString();
+		}
+
+		private void lblIštrintiKategorija_Click(object sender, EventArgs e)
+		{
+			txtKategorija.Clear();
+			txtKategorijosId.Clear();
+		}
 	}
 }

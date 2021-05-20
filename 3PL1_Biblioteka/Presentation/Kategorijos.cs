@@ -14,13 +14,33 @@ namespace Presentation
 {
 	public partial class Kategorijos : Form
 	{
+		public delegate void KategorijosPasirinkimas(int kategorijosId, string kategorijosPavadinimas);
+
 		private readonly KategorijosService _kategorijosService;
+		private KategorijosPasirinkimas _kategorijosPasirinkimas;
 
 		public Kategorijos()
 		{
 			_kategorijosService = new KategorijosService();
 			InitializeComponent();
 			GaukSąrašoDuomenis(GaukPaieškosLaukus());
+		}
+
+		public Kategorijos(KategorijosPasirinkimas kategorijosPasirinkimas)
+		{
+			InitializeComponent();
+			_kategorijosService = new KategorijosService();
+			_kategorijosPasirinkimas = kategorijosPasirinkimas;
+			GaukSąrašoDuomenis(GaukPaieškosLaukus());
+			PikerioKonfiguracija();
+		}
+
+		public void PikerioKonfiguracija()
+		{
+			dataGridViewKategorijos.Columns["clmnRedaguoti"].Visible = false;
+			dataGridViewKategorijos.Columns["clmnIštrinti"].Visible = false;
+			btnSukurtiKategorija.Visible = false;
+			this.Width = this.Width - 100;
 		}
 
 		~Kategorijos()
@@ -69,6 +89,13 @@ namespace Presentation
 			if (e.ColumnIndex == 4) {
 				var id = (int)dataGridViewKategorijos["clmnId", e.RowIndex].Value;
 				PanaikinkKategorija(id);
+			}
+
+			if (e.ColumnIndex == 5) {
+				var id = (int)dataGridViewKategorijos["clmnId", e.RowIndex].Value;
+				var pavadinimas = dataGridViewKategorijos["clmnPavadinimas", e.RowIndex].Value.ToString();
+				_kategorijosPasirinkimas(id, pavadinimas);
+				this.Close();
 			}
 		}
 
