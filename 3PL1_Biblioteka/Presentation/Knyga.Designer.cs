@@ -36,6 +36,11 @@ namespace Presentation
 			this.txtKategorijosId = new System.Windows.Forms.TextBox();
 			this.btnSaugoti = new System.Windows.Forms.Button();
 			this.lblIštrintiKategorija = new System.Windows.Forms.Label();
+			this.txtViršelis = new System.Windows.Forms.TextBox();
+			this.btnViršelis = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.pictureBoxViršelis = new System.Windows.Forms.PictureBox();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxViršelis)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// txtPavadinimas
@@ -83,7 +88,7 @@ namespace Presentation
 			// 
 			// txtKategorijosId
 			// 
-			this.txtKategorijosId.Location = new System.Drawing.Point(302, 47);
+			this.txtKategorijosId.Location = new System.Drawing.Point(12, 106);
 			this.txtKategorijosId.Name = "txtKategorijosId";
 			this.txtKategorijosId.Size = new System.Drawing.Size(10, 23);
 			this.txtKategorijosId.TabIndex = 5;
@@ -91,12 +96,13 @@ namespace Presentation
 			// 
 			// btnSaugoti
 			// 
-			this.btnSaugoti.Location = new System.Drawing.Point(104, 107);
+			this.btnSaugoti.Location = new System.Drawing.Point(104, 105);
 			this.btnSaugoti.Name = "btnSaugoti";
 			this.btnSaugoti.Size = new System.Drawing.Size(75, 23);
 			this.btnSaugoti.TabIndex = 6;
 			this.btnSaugoti.Text = "Saugoti";
 			this.btnSaugoti.UseVisualStyleBackColor = true;
+			this.btnSaugoti.Click += new System.EventHandler(this.btnSaugoti_Click);
 			// 
 			// lblIštrintiKategorija
 			// 
@@ -109,11 +115,51 @@ namespace Presentation
 			this.lblIštrintiKategorija.Text = "x";
 			this.lblIštrintiKategorija.Click += new System.EventHandler(this.lblIštrintiKategorija_Click);
 			// 
+			// txtViršelis
+			// 
+			this.txtViršelis.Enabled = false;
+			this.txtViršelis.Location = new System.Drawing.Point(104, 76);
+			this.txtViršelis.Name = "txtViršelis";
+			this.txtViršelis.Size = new System.Drawing.Size(163, 23);
+			this.txtViršelis.TabIndex = 8;
+			// 
+			// btnViršelis
+			// 
+			this.btnViršelis.Location = new System.Drawing.Point(271, 76);
+			this.btnViršelis.Name = "btnViršelis";
+			this.btnViršelis.Size = new System.Drawing.Size(26, 23);
+			this.btnViršelis.TabIndex = 9;
+			this.btnViršelis.Text = "...";
+			this.btnViršelis.UseVisualStyleBackColor = true;
+			this.btnViršelis.Click += new System.EventHandler(this.btnViršelis_Click);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(12, 79);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(46, 15);
+			this.label3.TabIndex = 10;
+			this.label3.Text = "Viršelis:";
+			// 
+			// pictureBoxViršelis
+			// 
+			this.pictureBoxViršelis.Location = new System.Drawing.Point(302, 13);
+			this.pictureBoxViršelis.Name = "pictureBoxViršelis";
+			this.pictureBoxViršelis.Size = new System.Drawing.Size(100, 116);
+			this.pictureBoxViršelis.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBoxViršelis.TabIndex = 11;
+			this.pictureBoxViršelis.TabStop = false;
+			// 
 			// Knyga
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(556, 333);
+			this.Controls.Add(this.pictureBoxViršelis);
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.btnViršelis);
+			this.Controls.Add(this.txtViršelis);
 			this.Controls.Add(this.lblIštrintiKategorija);
 			this.Controls.Add(this.btnSaugoti);
 			this.Controls.Add(this.txtKategorijosId);
@@ -124,6 +170,7 @@ namespace Presentation
 			this.Controls.Add(this.txtPavadinimas);
 			this.Name = "Knyga";
 			this.Text = "Knyga";
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxViršelis)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -139,5 +186,9 @@ namespace Presentation
 		private System.Windows.Forms.TextBox txtKategorijosId;
 		private System.Windows.Forms.Button btnSaugoti;
 		private System.Windows.Forms.Label lblIštrintiKategorija;
+		private System.Windows.Forms.TextBox txtViršelis;
+		private System.Windows.Forms.Button btnViršelis;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.PictureBox pictureBoxViršelis;
 	}
 }

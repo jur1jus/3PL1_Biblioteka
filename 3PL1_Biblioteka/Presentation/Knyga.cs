@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,23 @@ namespace Presentation
 		{
 			txtKategorija.Clear();
 			txtKategorijosId.Clear();
+		}
+
+		private void btnSaugoti_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void btnViršelis_Click(object sender, EventArgs e)
+		{
+			using (OpenFileDialog ofd = new())
+			if (ofd.ShowDialog() == DialogResult.OK) {
+				var failoKelias = ofd.FileName;
+
+				txtViršelis.Text = failoKelias;
+
+				pictureBoxViršelis.Image = new Bitmap(failoKelias);
+			}
 		}
 	}
 }
