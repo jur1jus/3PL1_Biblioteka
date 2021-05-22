@@ -2,7 +2,10 @@
 using Services.FormDtos;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,9 +31,55 @@ namespace Services
 			return knygos;
 		}
 
+		public void SaugokKnygą(FormDtos.Knyga knyga)
+		{
+			using (var tran = _db.Database.BeginTransaction()) {
+				try {
+					var failoPavadinimas = Path.GetFileName(knyga.NuotraukosKelias);
+					var ftpUri = ConfigurationManager.AppSettings["knygųViršeliųFolderis"];
+
+					if (knyga.Id.HasValue) {
+						//update
+						var knygaDb = _db.Knygos.Where(m => m.Id == knyga.Id).FirstOrDefault();
+
+						knygaDb.Atnaujink(knyga.Pavadinimas, knyga.KategorijosId, knyga.PuslapiųSkaičius, failoPavadinimas);
+					} else {
+						//insert
+						var knygaDb = new Domain.Knyga(knyga.Pavadinimas, knyga.KategorijosId, knyga.PuslapiųSkaičius, failoPavadinimas);
+						_db.Knygos.Add(knygaDb);
+					}
+
+					_db.SaveChanges();
+
+
+					ĮkelkFailąĮFtp(ftpUri, failoPavadinimas, knyga.NuotraukosKelias);
+
+					tran.Commit();
+				} catch {
+					tran.Rollback();
+					throw;
+				}
+			}
+		}
+
+		public void ĮkelkFailąĮFtp(string uri, string failoPavadinimas, string failoKelias)
+		{
+			FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri + failoPavadinimas);
+			request.Method = WebRequestMethods.Ftp.UploadFile;
+
+			//request.Credentials = new NetworkCredential("username", "password");
+
+			var failas = File.ReadAllBytes(failoKelias);
+
+			using (Stream ftpStream = request.GetRequestStream())
+				ftpStream.Write(failas, 0, failas.Length);
+		}
+
 		public void Dispose()
 		{
 			_db.Dispose();
 		}
+
+		
 	}
 }

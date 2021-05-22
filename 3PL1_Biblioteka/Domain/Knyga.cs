@@ -28,6 +28,25 @@ namespace Domain
 
 		public DateTime ĮrašoData { get; private set; }
 
+		public string ViršelioNuotraukosPath { get; private set; }
+
 		private Knyga() { }
+
+		public Knyga(string pavadinimas, int? kategorijosId, int? puslapiųSkaičius, string viršelioNuotraukosPath)
+		{
+			Pavadinimas = pavadinimas;
+			Metai = 2020;
+			KategorijosId = kategorijosId;
+			PuslapiųSkaičius = puslapiųSkaičius;
+			AutoriausId = 1;
+			ĮrašoData = DateTime.Now;
+			ArPašalinta = false;
+			ViršelioNuotraukosPath = viršelioNuotraukosPath;
+		}
+
+		public void Atnaujink(string pavadinimas, int? kategorijosId, int? puslapiųSkaičius, string viršelioNuotraukosPath)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
