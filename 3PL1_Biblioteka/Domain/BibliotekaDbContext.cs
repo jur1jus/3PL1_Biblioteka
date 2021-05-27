@@ -23,6 +23,8 @@ namespace Domain
 
 		public DbSet<Autorius> Autoriai { get; set; }
 
+		public DbSet<KnygosEgzempliorius> KnygųEgzemplioriai { get; set; }
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Kategorija>(entity => {

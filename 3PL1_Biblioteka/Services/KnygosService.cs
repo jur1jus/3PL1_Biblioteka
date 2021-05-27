@@ -75,6 +75,27 @@ namespace Services
 				ftpStream.Write(failas, 0, failas.Length);
 		}
 
+		public List<KnygaPasirinkimui> GaukKnygasPasirinkimui()
+		{
+			var knygos = _db.Knygos
+							.Where(knyga => knyga.ArPašalinta == false)
+							.Select(knygaDb => new KnygaPasirinkimui(knygaDb.Id, knygaDb.Pavadinimas))
+							.ToList();
+
+			return knygos;
+		}
+
+		public List<FormDtos.KnygosEgzempliorius> GaukKnygosEgzempliorius(int knygosId)
+		{
+			var knygųEgzemplioriai = _db.KnygųEgzemplioriai
+										.Where(knygosEgzempliorius => knygosEgzempliorius.KnygosId == knygosId)
+										.Select(m => new FormDtos.KnygosEgzempliorius(m.Id, m.Numeris, m.Sekcija, m.Lentyna))
+										.ToList();
+
+			return knygųEgzemplioriai;
+		}
+
+
 		public void Dispose()
 		{
 			_db.Dispose();

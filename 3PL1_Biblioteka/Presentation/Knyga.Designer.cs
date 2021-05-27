@@ -40,6 +40,7 @@ namespace Presentation
 			this.btnViršelis = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.pictureBoxViršelis = new System.Windows.Forms.PictureBox();
+			this.btnKnygųEgzemplioriai = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxViršelis)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -151,11 +152,21 @@ namespace Presentation
 			this.pictureBoxViršelis.TabIndex = 11;
 			this.pictureBoxViršelis.TabStop = false;
 			// 
+			// btnKnygųEgzemplioriai
+			// 
+			this.btnKnygųEgzemplioriai.Location = new System.Drawing.Point(12, 146);
+			this.btnKnygųEgzemplioriai.Name = "btnKnygųEgzemplioriai";
+			this.btnKnygųEgzemplioriai.Size = new System.Drawing.Size(145, 23);
+			this.btnKnygųEgzemplioriai.TabIndex = 12;
+			this.btnKnygųEgzemplioriai.Text = "K";
+			this.btnKnygųEgzemplioriai.UseVisualStyleBackColor = true;
+			// 
 			// Knyga
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(556, 333);
+			this.Controls.Add(this.btnKnygųEgzemplioriai);
 			this.Controls.Add(this.pictureBoxViršelis);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.btnViršelis);
@@ -190,5 +201,6 @@ namespace Presentation
 		private System.Windows.Forms.Button btnViršelis;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.PictureBox pictureBoxViršelis;
+		private System.Windows.Forms.Button btnKnygųEgzemplioriai;
 	}
 }
