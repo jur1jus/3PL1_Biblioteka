@@ -32,6 +32,7 @@ namespace Presentation
 			comboBox1.ValueMember = "Id";
 
 			comboBox1.SelectedIndex = -1;
+			comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
 		}
 
 		public void UžpildykDataGridView(int knygosId)
@@ -58,6 +59,11 @@ namespace Presentation
 
 				UžpildykDataGridView(knygosId);
 			}
+		}
+
+		private void btnEgzemplioriųGeneravimas_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

@@ -41,6 +41,8 @@ namespace Presentation
 			this.label3 = new System.Windows.Forms.Label();
 			this.pictureBoxViršelis = new System.Windows.Forms.PictureBox();
 			this.btnKnygųEgzemplioriai = new System.Windows.Forms.Button();
+			this.btnEgzemplioriųGeneravimas = new System.Windows.Forms.Button();
+			this.txtId = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxViršelis)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -156,16 +158,36 @@ namespace Presentation
 			// 
 			this.btnKnygųEgzemplioriai.Location = new System.Drawing.Point(12, 146);
 			this.btnKnygųEgzemplioriai.Name = "btnKnygųEgzemplioriai";
-			this.btnKnygųEgzemplioriai.Size = new System.Drawing.Size(145, 23);
+			this.btnKnygųEgzemplioriai.Size = new System.Drawing.Size(182, 23);
 			this.btnKnygųEgzemplioriai.TabIndex = 12;
-			this.btnKnygųEgzemplioriai.Text = "K";
+			this.btnKnygųEgzemplioriai.Text = "Egzemplioriai";
 			this.btnKnygųEgzemplioriai.UseVisualStyleBackColor = true;
+			// 
+			// btnEgzemplioriųGeneravimas
+			// 
+			this.btnEgzemplioriųGeneravimas.Location = new System.Drawing.Point(13, 176);
+			this.btnEgzemplioriųGeneravimas.Name = "btnEgzemplioriųGeneravimas";
+			this.btnEgzemplioriųGeneravimas.Size = new System.Drawing.Size(181, 23);
+			this.btnEgzemplioriųGeneravimas.TabIndex = 13;
+			this.btnEgzemplioriųGeneravimas.Text = "Egzempliorių generavimas";
+			this.btnEgzemplioriųGeneravimas.UseVisualStyleBackColor = true;
+			this.btnEgzemplioriųGeneravimas.Click += new System.EventHandler(this.btnEgzemplioriųGeneravimas_Click);
+			// 
+			// txtId
+			// 
+			this.txtId.Location = new System.Drawing.Point(395, 187);
+			this.txtId.Name = "txtId";
+			this.txtId.Size = new System.Drawing.Size(15, 23);
+			this.txtId.TabIndex = 14;
+			this.txtId.Visible = false;
 			// 
 			// Knyga
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(556, 333);
+			this.ClientSize = new System.Drawing.Size(422, 222);
+			this.Controls.Add(this.txtId);
+			this.Controls.Add(this.btnEgzemplioriųGeneravimas);
 			this.Controls.Add(this.btnKnygųEgzemplioriai);
 			this.Controls.Add(this.pictureBoxViršelis);
 			this.Controls.Add(this.label3);
@@ -202,5 +224,7 @@ namespace Presentation
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.PictureBox pictureBoxViršelis;
 		private System.Windows.Forms.Button btnKnygųEgzemplioriai;
+		private System.Windows.Forms.Button btnEgzemplioriųGeneravimas;
+		private System.Windows.Forms.TextBox txtId;
 	}
 }

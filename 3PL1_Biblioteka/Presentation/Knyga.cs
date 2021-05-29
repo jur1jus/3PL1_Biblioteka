@@ -1,4 +1,5 @@
 ﻿using Services;
+using Services.FormDtos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,7 +54,9 @@ namespace Presentation
 			FormDto.Knyga knyga = new(null, pavadinimas, puslapiųSkaičius, kategorijosId, nuotraukosKelias);
 
 			try {
-				_service.SaugokKnygą(knyga);
+				var išsaugotaKnyga = _service.SaugokKnygą(knyga);
+
+				txtId.Text = išsaugotaKnyga.Id.ToString();
 			} catch (Exception ex) {
 				//_logger.LogError(ex.Message);
 				MessageBox.Show("Įvyko klaida knygos saugojime.");
@@ -72,6 +75,25 @@ namespace Presentation
 
 				pictureBoxViršelis.Image = new Bitmap(failoKelias);
 			}
+		}
+
+		private void btnEgzemplioriųGeneravimas_Click(object sender, EventArgs e)
+		{
+			if (string.IsNullOrEmpty(txtId.Text)) {
+				MessageBox.Show("Nenurodytas knygos ID.");
+				return;
+			}
+
+			//var knygosId = Convert.ToInt32(txtId.Text);
+			var knygosId = int.Parse(txtId.Text);
+
+			EgzemplioriųGeneravimas egzemplioriųGeneravimas = new EgzemplioriųGeneravimas(knygosId, EgzemplioriųKūrimas);
+			egzemplioriųGeneravimas.ShowDialog();
+		}
+
+		private void EgzemplioriųKūrimas(List<KuriamasEgzempliorius> egzemplioriai)
+		{
+			MessageBox.Show("1");
 		}
 	}
 }

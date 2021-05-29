@@ -31,21 +31,23 @@ namespace Services
 			return knygos;
 		}
 
-		public void SaugokKnygą(FormDtos.Knyga knyga)
+		public FormDtos.Knyga SaugokKnygą(FormDtos.Knyga knyga)
 		{
 			using (var tran = _db.Database.BeginTransaction()) {
 				try {
 					var failoPavadinimas = Path.GetFileName(knyga.NuotraukosKelias);
 					var ftpUri = ConfigurationManager.AppSettings["knygųViršeliųFolderis"];
 
+					Domain.Knyga knygaDb;
+
 					if (knyga.Id.HasValue) {
 						//update
-						var knygaDb = _db.Knygos.Where(m => m.Id == knyga.Id).FirstOrDefault();
+						knygaDb = _db.Knygos.Where(m => m.Id == knyga.Id).FirstOrDefault();
 
 						knygaDb.Atnaujink(knyga.Pavadinimas, knyga.KategorijosId, knyga.PuslapiųSkaičius, failoPavadinimas);
 					} else {
 						//insert
-						var knygaDb = new Domain.Knyga(knyga.Pavadinimas, knyga.KategorijosId, knyga.PuslapiųSkaičius, failoPavadinimas);
+						knygaDb = new Domain.Knyga(knyga.Pavadinimas, knyga.KategorijosId, knyga.PuslapiųSkaičius, failoPavadinimas);
 						_db.Knygos.Add(knygaDb);
 					}
 
@@ -55,6 +57,11 @@ namespace Services
 					ĮkelkFailąĮFtp(ftpUri, failoPavadinimas, knyga.NuotraukosKelias);
 
 					tran.Commit();
+
+
+					var knygaResult = knyga with { Id = knygaDb.Id };
+					return knygaResult;
+
 				} catch {
 					tran.Rollback();
 					throw;
